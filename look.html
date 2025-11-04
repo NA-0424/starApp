@@ -263,9 +263,16 @@
         text.classList.add("show");
     }
 
+    document.querySelectorAll('.nav_list a').forEach(link => {
+        link.addEventListener('click', () => {
+        document.getElementById('aikon').checked = false;
+            });
+        });
+
 
     </script>
 </body>
 </html>
 
     
+
