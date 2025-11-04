@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<head>
+    <title>星を探す</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/look.css">
+</head>
+<body>
+    <h1>星を探す</h1>
+    <div id="container">
+        <div id="selects">
+        <select id="month" name="month">
+            <option value="1">1月</option>
+            <option value="2">2月</option>
+            <option value="3">3月</option>
+            <option value="4">4月</option>
+            <option value="5">5月</option>
+            <option value="6">6月</option>
+            <option value="7">7月</option>
+            <option value="8">8月</option>
+            <option value="9">9月</option>
+            <option value="10">10月</option>
+            <option value="11">11月</option>
+            <option value="12">12月</option>
+        </select>
+        <select id="time" name="time">
+            <option value="20">20時</option>
+            <option value="21">21時</option>
+            <option value="22">22時</option>
+            <option value="23">23時</option>
+            <option value="0">0時</option>
+            <option value="1">1時</option>
+            <option value="2">2時</option>
+            <option value="3">3時</option>
+        </select>
+        </div>
+        <button onclick="search()">検索</button>
+        <div id="result" style="margin-top:20px; font-size:18px;" width="300px"></div>
+        </div>
+    </div>
+    <script>
+        //星座の格納
+        const stars = {
+            "1": {
+                "20": [
+                    { name: "オリオン座", image: "images/orion.png" },
+                    { name: "おおいぬ座", image: "images/ooinu.png" }],
+                "23": [
+                    { name: "ふたご座", image: "images/hutago.png" },
+                    { name: "おうし座", image: "images/oushi.png" }],
+                "2": [
+                    { name: "しし座", image: "images/shishi.png" },
+                    { name: "かに座", image: "images/kani.png" }]
+            },
+            "2": {
+                "20": [
+                    { name: "オリオン座", image: "images/orion.png" },
+                    { name: "ふたご座", image: "images/hutago.png" }],
+                "23": [
+                    { name: "おうし座", image: "images/oushi.png" },
+                    { name: "ぎょしゃ座", image: "images/gyosha.png" }],
+                "2": [
+                    { name: "しし座", image: "images/shishi.png" },
+                    { name: "おとめ座", image: "images/otome.png" }]
+            },
+            "3": {
+                "20": [
+                    { name: "ふたご座", image: "images/hutago.png" },
+                    { name: "おうし座", image: "images/oushi.png" }],
+                "23": [
+                    { name: "しし座", image: "images/shishi.png" },
+                    { name: "うしかい座", image: "images/ushikai.png" }],
+                "2": [
+                    { name: "おとめ座", image: "images/otome.png" },
+                    { name: "かみのけ座", image: "images/kaminoke.png" }]
+            },
+            "4": {
+                "20": [
+                    { name: "しし座", image: "images/shishi.png" },
+                    { name: "おとめ座", image: "images/otome.png" }],
+                "23": [
+                    { name: "うしかい座", image: "images/ushikai.png" },
+                    { name: "からす座", image: "images/karasu.png" }],
+                "2": [
+                    { name: "こと座", image: "images/koto.png" },
+                    { name: "わし座", image: "images/washi.png" }]
+            },
+            "5": {
+                "20": [
+                    { name: "しし座", image: "images/shishi.png" },
+                    { name: "おとめ座", image: "images/otome.png" }],
+                "23": [
+                    { name: "うしかい座", image: "images/ushikai.png" },
+                    { name: "かみのけ座", image: "images/kaminoke.png" }],
+                "2": [
+                    { name: "こと座", image: "images/koto.png" },
+                    { name: "はくちょう座", image: "images/hakuchou.png" }]
+            },
+            "6": {
+                "20": [
+                    { name: "うしかい座", image: "images/ushikai.png" },
+                    { name: "おとめ座", image: "images/otome.png" }],
+                "23": [
+                    { name: "こと座", image: "images/koto.png" },
+                    { name: "わし座", image: "images/washi.png" }],
+                "2": [
+                    { name: "はくちょう座", image: "images/hakuchou.png" },
+                    { name: "さそり座", image: "images/sasori.png" }]
+            },
+            "7": {
+                "20": [
+                    { name: "夏の大三角", image: "images/summer_triangle.png" },
+                    { name: "さそり座", image: "images/sasori.png" }],
+                "23": [
+                    { name: "いて座", image: "images/ite.png" },
+                    { name: "や座", image: "images/ya.png" }],
+                "2": [
+                    { name: "ペガスス座", image: "images/pegasus.png" },
+                    { name: "アンドロメダ座", image: "images/andromeda.png" }]
+            },
+            "8": {
+                "20": [
+                    { name: "夏の大三角", image: "images/summer_triangle.png" },
+                    { name: "いて座", image: "images/ite.png" }],
+                "23": [
+                    { name: "や座", image: "images/ya.png" },
+                    { name: "ケフェウス座", image: "images/keheus.png" }],
+                "2": [
+                    { name: "ペガスス座", image: "images/pegasus.png" },
+                    { name: "アンドロメダ座", image: "images/andromeda.png" }]
+            },
+            "9": {
+                "20": [
+                    { name: "夏の大三角", image: "images/summer_triangle.png" },
+                    { name: "わし座", image: "images/washi.png" }],
+                "23": [
+                    { name: "ペガスス座", image: "images/pegasus.png" },
+                    { name: "アンドロメダ座", image: "images/andromeda.png" }],
+                "2": [
+                    {name: "おうし座", image: "images/oushi.png" },
+                    { name: "オリオン座", image: "images/orion.png" }]
+            },
+            "10": {
+                "20": [
+                    { name: "ペガスス座", image: "images/pegasus.png" },
+                    { name: "アンドロメダ座", image: "images/andromeda.png" }],
+                "23": [
+                    { name: "おうし座", image: "images/oushi.png" },
+                    { name: "ぎょしゃ座", image: "images/gyosha.png" }],
+                "2": [
+                    { name: "オリオン座", image: "images/orion.png" },
+                    { name: "おおいぬ座", image: "images/ooinu.png" }]
+            },
+            "11": {
+                "20": [
+                    { name: "ペガスス座", image: "images/pegasus.png" },
+                    { name: "アンドロメダ座", image: "images/andromeda.png" }],
+                "23": [
+                    { name: "おうし座", image: "images/oushi.png" },
+                    { name: "オリオン座", image: "images/orion.png" }],
+                "2": [
+                    { name: "おおいぬ座", image: "images/ooinu.png" },
+                    { name: "ふたご座", image: "images/hutago.png" }]
+            },
+            "12": {
+                "20": [
+                    { name: "オリオン座", image: "images/orion.png" },
+                    { name: "おおいぬ座", image: "images/ooinu.png" }],
+                "23": [
+                    { name: "ふたご座", image: "images/hutago.png" },
+                    { name: "おうし座", image: "images/oushi.png" }],
+                "2": [
+                    { name: "しし座", image: "images/shishi.png" },
+                    { name: "かに座", image: "images/kani.png" }]
+            }
+    };
+
+    //説明
+    const descriptions = {
+        "オリオン座": "冬の代表的な星座。三つ星と呼ばれるベルトのように並んだ星が特徴で、ベテルギウスやリゲルなど明るい星を持つ。",
+        "おおいぬ座": "シリウスを含む星座で、夜空で最も明るい恒星を持つ。オリオン座の南東に位置し、冬の大三角の一角を形成する。",
+        "ふたご座": "カストルとポルックスの二つの明るい星が目印。神話では双子の兄弟として知られる。",
+        "おうし座": "プレアデス星団（すばる）やアルデバランが特徴的。冬の空でひときわ目立つ星座。",
+        "ぎょしゃ座": "明るいカペラを中心とした五角形の形を持つ星座。冬の大六角の一部を構成する。",
+        "かに座": "暗い星が多く目立たないが、中心にはプレセペ星団（M44）がある春の星座。",
+        "しし座": "春の星座の代表。1等星レグルスが輝き、ししの形をした曲線が特徴的。",
+        "おとめ座": "スピカが目印の春の星座。12星座のひとつで、農耕の女神デメテルにまつわる神話で知られる。",
+        "うしかい座": "アルクトゥールスが特徴的なオレンジ色の星。北斗七星の柄の延長上にある。",
+        "かみのけ座": "暗い星が多いが、多数の銀河や星団を含む星座。春の夜空で見られる。",
+        "からす座": "4つの星が台形を作る小さな星座。ギリシャ神話の神アポロンの使いであるカラスに由来する。",
+        "こと座": "織姫星ベガを含む星座。七夕伝説の主役の一つで、夏の大三角を構成する。",
+        "わし座": "彦星アルタイルを含む星座。天の川をはさんで織姫星と向かい合う。",
+        "はくちょう座": "デネブを含み、天の川の中を飛ぶ白鳥の形をしている。夏の大三角の一角。",
+        "さそり座": "アンタレスが特徴的な赤い星。夏の南の空で目立ち、長い尾とハサミを持つ。",
+        "いて座": "天の川の中心方向にあり、星が密集して見える。南斗六星とも呼ばれる。",
+        "や座": "小さく地味な星座だが、天の川の中に位置し、夏に見られる。",
+        "ケフェウス座": "北の空にある王様の星座。カシオペア座の近くにあり、王妃とともに描かれることが多い。",
+        "夏の大三角": "こと座のベガ・わし座のアルタイル・はくちょう座のデネブを結ぶ三角形。夏の夜空の象徴。",
+        "ペガスス座": "秋の星座。大きな四辺形が目印で、『秋の四辺形』とも呼ばれる。",
+        "アンドロメダ座": "アンドロメダ銀河を含む星座。ペガスス座の隣にあり、神話の王女アンドロメダに由来する。"
+    };
+
+
+
+    function search(){
+        var month = document.getElementById("month").value;
+        let time = document.getElementById("time").value;
+
+        if(time < 23){
+            time = 20;
+        }else if(time < 1){
+            time = 23;
+        }else{
+            time = 2;
+        }
+
+        let result = document.getElementById("result");
+
+        if (stars[month] && stars[month][time]) {
+            const star1 = stars[month][time][0];
+            const star2 = stars[month][time][1];
+
+            result.innerHTML = `
+                <div class="star">
+                <p>${star1.name}</p>
+                <img src="${star1.image}" alt="${star1.name}" onclick="explain1('${star1.name}')">
+                <p id="text1"></p>
+                </div>
+                <div class="star">
+                <p>${star2.name}</p>
+                <img src="${star2.image}" alt="${star2.name}"onclick="explain2('${star2.name}')">
+                <p id="text2"></p>
+                </div>
+            `;
+        } else {
+            result.innerHTML = "表示できません";
+        }
+    }
+
+    function explain1(name){
+        let text = document.getElementById("text1");
+        let explain = descriptions[name];
+        text.innerHTML = explain;
+        text.classList.add("show");//idに加えてclassを追加
+    }
+    function explain2(name){
+        let text = document.getElementById("text2");
+        let explain = descriptions[name];
+        text.innerHTML = explain;
+        text.classList.add("show");
+    }
+
+
+    </script>
+</body>
+</html>
+
+    

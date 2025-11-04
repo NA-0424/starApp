@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星に願いを</title>
+  <link rel="stylesheet" href="css/wish.css" />
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="container">
+    <header>
+      <h1>星に願いを</h1>
+      <p class="subtitle">今日の思い出を記録しよう</p>
+    </header>
+
+    <div id="wishModal" class="modal">
+        <div class="modal-content">
+            <h2>今日の星空</h2>
+            <div id="form">
+              <label for="today">今日の日付を選択</label>
+              <input type="date" id="today">
+              <input type="text" id="text" placeholder="今日見た星は？">
+              <textarea id="wishInput" placeholder="今日の思い出を入力"></textarea>
+              <div class="modal-buttons">
+                  <button id="submitWish">送信</button>
+                  <button id="closeModal">閉じる</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+      <button class="round-button" id="wishButton">願いを届ける</button>
+      <button class="round-button" id="pastButton">願いを見る</button>
+    </div>
+  </div>
+  <script>
+    // 変数の定義
+    const modal = document.getElementById("wishModal");
+    const wishButton = document.getElementById("wishButton");
+    const closeModal = document.getElementById("closeModal");
+    const submitBtn = document.getElementById("submitWish");
+    const input = document.getElementById("wishInput");
+    const pastButton = document.getElementById("pastButton");
+
+    //ポップアップ
+    wishButton.addEventListener("click", () => {
+        modal.style.display = "flex"; // 表示
+    });
+
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none"; // 非表示
+    });
+
+    //内容を保存
+    submitBtn.addEventListener("click", () => {
+      const Today = document.getElementById("today").value;
+      const text = document.getElementById("text").value;
+      const wish = document.getElementById("wishInput").value.trim();
+
+      if (wish === "") return alert("願いごとを入力してね");
+
+    let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
+    wishes.push({ date: Today, star: text, memory: wish });
+    localStorage.setItem("wishes", JSON.stringify(wishes));
+
+
+    // 入力欄をリセットしてモーダルを閉じる
+    document.getElementById("wishInput").value = "";
+    document.getElementById("text").value = "";
+    document.getElementById("today").value = "";
+    modal.style.display = "none";
+  });
+
+    //ページ移動
+    pastButton.addEventListener("click", () => {
+        location.href="past.html";
+    });
+
+const sky = document.querySelector('.sky');
+const STAR_COUNT = 220;
+
+const rand = (min, max) => Math.random() * (max - min) + min;
+
+for (let i = 0; i < STAR_COUNT; i++) {
+  const star = document.createElement('span');
+  star.className = 'star';
+
+  star.style.left = `${rand(0, 100)}%`;
+  star.style.top  = `${rand(0, 100)}%`;
+  star.style.width = star.style.height = `${rand(1, 3)}px`;
+
+  star.style.setProperty('--base-opacity', rand(0.35, 0.9));
+  star.style.setProperty('--twinkle', `${rand(1.6, 3.8)}s`);
+  star.style.setProperty('--delay', `${rand(0, 4)}s`);
+
+  sky.appendChild(star);
+}
+
+  </script>
+</body>
+</html>

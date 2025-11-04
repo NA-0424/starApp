@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星空アプリ | ホーム</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="content">
+    <h1>星空アプリ</h1>
+    <div class="buttons">
+      <button onclick = "location.href='look.html'">今日の空を見上げる</button>
+      <button onclick = "location.href='search.html'">自分の星を知る</button>
+      <button onclick = "location.href='wish.html'">星に願う</button>
+    </div>
+  </div>
+  <script>
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({length: 150}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5,
+        d: Math.random() * 0.5
+      }));
+      draw();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+  </script>
+</body>
+</html>

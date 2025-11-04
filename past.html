@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>過去の願い</title>
+  <link rel="stylesheet" href="css/past.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>過去の願い</h1>
+      <p class="subtitle">日付をタップすると思い出が見られます</p>
+    </header>
+
+    <div id="wishList" class="wish-list"></div>
+
+    <button id="backButton" class="round-button">← 戻る</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const wishList = document.getElementById("wishList");
+      const backButton = document.getElementById("backButton");
+
+      // 保存データを取得
+      let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
+
+      function renderList() {
+        wishList.innerHTML = ""; // 一旦リセット
+
+        if (wishes.length === 0) {
+          wishList.innerHTML = `<p>まだ願いはありません</p>`;
+          return;
+        }
+
+      wishes.forEach((w, index) => {
+        const item = document.createElement("div");
+        item.classList.add("wish-item");
+
+        item.innerHTML = `
+          <div class="wish-date">
+            日付: ${w.date}
+            <button class="delete-btn" data-index="${index}">削除</button>
+          </div>
+          <div class="wish-detail">
+            <p>見た星：${w.star || "（未記入）"}</p>
+            <p>思い出：${w.memory || "（記録なし）"}</p>
+          </div>
+        `;
+
+      // トグル（開閉）
+      item.querySelector(".wish-date").addEventListener("click", (e) => {
+        // 削除ボタンクリック時はトグルしない
+        if (e.target.classList.contains("delete-btn")) return;
+        item.classList.toggle("active");
+      });
+
+      // 削除ボタンの処理
+      item.querySelector(".delete-btn").addEventListener("click", (e) => {
+        const i = parseInt(e.target.dataset.index, 10);
+        wishes.splice(i, 1); // 1件削除
+        localStorage.setItem("wishes", JSON.stringify(wishes));
+        renderList(); // 再描画
+      });
+
+      wishList.appendChild(item);
+    });
+  }
+
+  renderList();
+
+  // 戻るボタン
+  backButton.addEventListener("click", () => {
+    window.location.href = "wish.html";
+  });
+});
+
+
+  </script>
+</body>
+</html>
