@@ -1,0 +1,72 @@
+
+.star img {
+  width: 200px;                /* 大きさ調整 */
+  border: 6px solid #c0c0c0;
+  border-radius: 10px;
+  background-color: #1a2634;
+  box-shadow: 0 0 12px rgba(192,192,192,0.6);
+  padding: 6px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.star img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.8);
+}
+
+#selects{
+  display:block;
+}
+
+select {
+  background-color: #1a2634;       /* 深めの藍色で夜空っぽく */
+  color: #f0f4f8;                  /* 白っぽい文字 */
+  border: 2px solid #c0c0c0;       /* シルバーの縁取り */
+  border-radius: 8px;              /* 角を少し丸く */
+  padding: 8px 12px;
+  font-size: 1.1em;           
+  box-shadow: 0 0 8px rgba(192,192,192,0.4);
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
+
+button{
+  background-color:#438bde;
+  color:#f0f4f8;
+  border:#c0c0c0;
+  border-radius: 8px;
+  font-size:1.3rem;
+  margin-top: 20px;
+  width: 200px;
+}
+
+body {
+  background-color: #0d1b2a;
+  color: #f0f4f8;
+  font-family: "Noto Sans JP", sans-serif;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display:flex;
+  flex-direction: column;
+}
+#text1, #text2 {
+  width: 180px;          /* 横幅を固定 */
+  margin: 10px auto 0;   /* 中央寄せ */
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e5e5e5;
+  text-align: left;      /* 左寄せも自然 */
+  word-wrap: break-word; /* 長文の折り返し */
+  opacity: 0;           /*透明度*/
+  transition: opacity 0.4s ease;
+}
+
+#text1.show,
+#text2.show{
+  opacity:1;
+}

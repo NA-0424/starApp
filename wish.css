@@ -1,0 +1,136 @@
+:root {
+  --hue: 230;
+  --sky-from: hsl(var(--hue) 35% 6%);
+  --sky-to:   hsl(var(--hue) 55% 12%);
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1; 
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.95) 0 40%, rgba(255,255,255,0) 70%);
+  opacity: var(--base-opacity, .65);
+  animation: twinkle var(--twinkle, 2.2s) ease-in-out infinite;
+  animation-delay: calc(var(--delay, 0s) * -1);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: .6; transform: scale(1); }
+  40%      { opacity: .2; }
+  70%      { opacity: 1; transform: scale(1.1); }
+}
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #000010 0%, #000000 100%);
+  color: white;
+  font-family: "Yu Gothic", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+.subtitle {
+  font-size: 0.9em;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.round-button {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, #7ec8ff, #004e92);
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(126, 200, 255, 0.5);
+}
+
+.round-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(126, 200, 255, 0.8);
+}
+/*入力欄*/
+.modal {
+  display: none; /* ←最初は非表示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #111;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1em;
+}
+#today,
+#text{
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+}
+#submitWish,
+#closeModal{
+    background-color: rgb(129, 157, 247);
+    border-radius: 5%;
+}
