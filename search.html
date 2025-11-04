@@ -48,7 +48,8 @@
     const stars = {
       "1":{
         name:"山羊座",
-        story:"神話の話",
+        story:"星図に描かれているのは単なるヤギではなく、下半身が魚という奇妙なヤギである。狂気をつかさどる神でもあり「パニック」の語源である。",
+        mini:"三角形の座標が難しかった。",
         width:1,
         height:1,
         points:[
@@ -72,7 +73,8 @@
       },
       "2": {
         name: "みずがめ座",
-        story: "ゼウスに水を注ぐ役目を与えられた美少年ガニュメデの神話",
+        story: "水瓶座から出る水はうお座に流れ込んでいる。この大きな男が水を扱うためナイル川では洪水が起こると言われていた。",
+        mini:"画面に収めるのが大変だった。",
         width:1.3,
         height:1,
         points: [
@@ -116,7 +118,8 @@
       },
       "3": {
         name: "魚座",
-        story: "",
+        story: "二匹の魚がリボンでつながれた形をしている。怪物に襲われて神が姿を変えた形。",
+        mini:"分かりやすい形で非常に助かった。",
         width:1.7,
         height:1.5,
         points: [
@@ -160,7 +163,8 @@
       },
       "4": {
         name: "牡羊座座",
-        story: "",
+        story: "黄金の毛を持ち空を飛ぶ。古来より春分点を見つけるのに役立った。",
+        mini:"特にコメントはないです。",
         width:1.3,
         height:1,
         points: [
@@ -177,7 +181,8 @@
       },
       "5": {
         name: "牡牛座",
-        story: "",
+        story: "雪のように白く、透き通るような角を持った美しい牡牛。神話では少女をさらう",
+        mini:"角の分岐点が難しかった。",
         width:1.8,
         height:1.8,
         points: [
@@ -223,7 +228,8 @@
       },
       "6": {
         name: "双子座",
-        story: "",
+        story: "非常に強い兄弟愛で星座になった双子。星も半分で割れば瓜二つである。",
+        mini:"双子のようにかがみ合わせにするのが難しかった。",
         width:1.8,
         height:1.3,
         points: [
@@ -258,7 +264,8 @@
       },
       "7": {
         name: "かに座",
-        story: "",
+        story: "神話ではヘラクレスにあっさりと踏みつぶされてしまう。ヘラのおかげで星座になった。",
+        mini:"単純な四角形は意外と難しい。",
         width:1.8,
         height:1.3,
         points: [
@@ -282,7 +289,8 @@
       },
       "8": {
         name: "獅子座",
-        story: "",
+        story: "森の暴れん坊としてヘラクレスに倒される。獅子の毛皮はヘラクレスの象徴となる。",
+        mini:"星を見て獅子の形が浮かぶ。形が見えるとは珍しい。",
         width:1.6,
         height:1.4,
         points: [
@@ -329,7 +337,8 @@
       },
       "9": {
         name: "乙女座",
-        story: "",
+        story: "娘をハデスに連れていかれ一時期絶望し、一年中冬になった。",
+        mini:"美しい形を保つのが大変だった。",
         width:2,
         height:1.8,
         points: [
@@ -371,7 +380,8 @@
       },
       "10": {
         name: "天秤座",
-        story: "",
+        story: "正邪を図る天秤。争いの絶えない地上界を見限った女性の持ち物",
+        mini:"四角形多いなぁと思いながら作成しました。",
         width:2,
         height:2,
         points: [
@@ -393,7 +403,8 @@
     },
     "11": {
         name: "蠍座",
-        story: "",
+        story: "オリオンを倒した蠍。オリオンと蠍の位置は有名。",
+        mini:"有名星座だったため緊張した。",
         width:2,
         height:2.3,
         points: [
@@ -436,7 +447,8 @@
       },
       "12": {
         name: "いて座",
-        story: "",
+        story: "ヘラクレスなどに武術を教えた。不死身だった彼だが猛毒に耐え切れず不死身の力を手放し死んだ。",
+        mini:"左のヘラクレスの足を表現するのが難しかった。",
         width:2,
         height:1.8,
         points: [
@@ -596,7 +608,8 @@ function drawConstellation() {
   animate(0);
 
   document.getElementById("story").textContent =
-    `${constellation.name}：${constellation.story}`;
+    `${constellation.name}：${constellation.story}
+    小話：<br>${constellation.mini}`;
 }
 
   document.querySelectorAll('.nav_list a').forEach(link => {
@@ -607,3 +620,4 @@ function drawConstellation() {
   </script>
 </body>
 </html>
+
