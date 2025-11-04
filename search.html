@@ -607,7 +607,7 @@ function drawConstellation() {
   // アニメーション開始
   animate(0);
 
-  document.getElementById("story").textContent =
+  document.getElementById("story").innerHTML =
     `${constellation.name}：${constellation.story}
     小話：<br>${constellation.mini}`;
 }
@@ -620,4 +620,5 @@ function drawConstellation() {
   </script>
 </body>
 </html>
+
 
