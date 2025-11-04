@@ -29,11 +29,11 @@ body {
   background: radial-gradient(circle at center, #000010 0%, #000000 100%);
   color: white;
   font-family: "Yu Gothic", sans-serif;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  height: auto;
+  overflow: auto;
 }
 
 .container {
@@ -279,3 +279,4 @@ textarea {
     color: #b9aa87;
   }
 }
+
