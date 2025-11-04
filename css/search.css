@@ -10,7 +10,27 @@ body {
     font-family: "Yu Gothic", sans-serif;
     overflow: hidden;
   }
+  /*ヘッダー*/
+header {
+  position: fixed; /* 上部に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* h1を中央に */
+  align-items: center;
+  background: transparent;
+  z-index: 90;
+  height: 60px;
+}
 
+/* タイトル */
+header h1 {
+  font-size: 1.5em;
+  color: white;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
   canvas {
     background: transparent;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -25,3 +45,148 @@ body {
     font-size: 1.5em;
     letter-spacing: 0.1em;
   }
+/*スマホ用*/
+@media (max-width: 600px) {
+     /* ----- ハンバーガーメニュー関連 ----- */
+
+    /* チェックボックス自体は非表示 */
+    #aikon {
+        display: none;
+    }
+
+    /* ハンバーガーアイコンの外枠（ラベル） */
+    .aikon_open {
+        display: flex;
+        height: 60px;
+        width: 60px;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 100;
+        cursor: pointer;
+        right: 10px; /* 画面右から10px */
+    }
+
+    /* ハンバーガーの3本線（アイコン） */
+    .aikon_open span,
+    .aikon_open span:before,
+    .aikon_open span:after {
+        content: '';
+        display: block;
+        height: 3px;
+        width: 25px;
+        border-radius: 3px;
+        background: #333; /* 線の色（通常時は黒） */
+        transition: 0.5s;
+        position: absolute;
+        
+    }
+
+    /* 上の線の位置 */
+    .aikon_open span:before {
+        bottom: 8px;
+    }
+
+    /* 下の線の位置 */
+    .aikon_open span:after {
+        top: 8px;
+    }
+
+    /* アイコンがクリック（チェック）されたときに色を白に変える */
+    #aikon:checked ~ .aikon_open span,
+    #aikon:checked ~ .aikon_open span:before,
+    #aikon:checked ~ .aikon_open span:after {
+        background: rgb(252, 246, 246); /* 白っぽい色 */
+    }
+
+    /* チェック時、真ん中の線を透明にして消す */
+    #aikon:checked ~ .aikon_open span {
+        background: rgba(255, 255, 255, 0); /* 完全透明 */
+    }
+
+    /* チェック時、上の線を45度回転して「バツ」の左上に */
+    #aikon:checked ~ .aikon_open span::before {
+        bottom: 0;
+        transform: rotate(45deg);
+    }
+
+    /* チェック時、下の線を-45度回転して「バツ」の右下に */
+    #aikon:checked ~ .aikon_open span::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+    /* メニュー全体（初期状態では画面の右外） */
+    .navigation {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 100%; /* 画面の外に隠す */
+        z-index: 99;
+        background: rgba(2, 0, 0, 0.451); /* 背景色：黒に近い */
+        transition: .5s;
+        padding-right:100px;
+        padding-top: 50px;
+        margin-right: 20px;
+    }
+
+
+    /* メニューリストの黒ポチを消す */
+    .nav_list {
+        list-style: none;
+    }
+
+    /* ハンバーガーアイコンがチェックされたら、メニューを画面に表示 */
+    #aikon:checked ~ .navigation {
+        left: 50%; /* ← ここを 0 にすると画面全体に表示される */
+    }
+
+    /* メニュー内のリンクの文字スタイル */
+    .items a {
+        color: white;
+        text-decoration: none; /* 下線を消す */
+    }
+
+    /* メニュー項目の色（リンクでない部分） */
+    .items {
+        color: rgb(239, 164, 26);
+        text-decoration: none;
+    }
+}
+/*パソコン用*/
+@media(min-width: 601px){
+  nav{
+    justify-content: flex-end;
+    padding-right: 2rem;
+  }
+  .navigation{
+    position: static;
+    width: auto;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    transition: none;
+  }
+  .nav_list{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav_list
+  .items a{
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .nav_list
+  .items a:hover{
+    color: #b9aa87;
+  }
+}
