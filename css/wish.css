@@ -151,7 +151,7 @@ textarea {
         justify-content: center;
         align-items: center;
         position: absolute;
-        z-index: 100;
+        z-index: 9;
         cursor: pointer;
         right: 10px; /* 画面右から10px */
     }
@@ -212,7 +212,7 @@ textarea {
         position: fixed;
         top: 0;
         left: 100%; /* 画面の外に隠す */
-        z-index: 99;
+        z-index: 8;
         background: rgba(2, 0, 0, 0.451); /* 背景色：黒に近い */
         transition: .5s;
         padding-right:100px;
