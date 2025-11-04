@@ -10,6 +10,17 @@
   <div class="sky"></div>
   <div class="container">
     <header>
+      <div class="nav">
+        <input id="aikon" type="checkbox">
+        <label for="aikon" class="aikon_open"><span></span></label>
+        <div class="navigation">
+          <ul class="nav_list">
+            <li class="items"><a href="index.html">ホームへ</a></li>
+            <li class="items"><a href="look.html">今日の星空</a></li>
+            <li class="items"><a href="search.html">星座</a></li>
+          </ul>
+        </div>
+      </div>
       <h1>星に願いを</h1>
       <p class="subtitle">今日の思い出を記録しよう</p>
     </header>
@@ -96,6 +107,11 @@ for (let i = 0; i < STAR_COUNT; i++) {
 
   sky.appendChild(star);
 }
+  document.querySelectorAll('.nav_list a').forEach(link => {
+        link.addEventListener('click', () => {
+        document.getElementById('aikon').checked = false;
+            });
+        });
 
   </script>
 </body>
