@@ -10,6 +10,10 @@ body {
     font-family: "Yu Gothic", sans-serif;
     overflow: hidden;
   }
+#twin{
+    display:flex;
+    margin: 10px;
+}
   /*ヘッダー*/
 header {
   position: fixed; /* 上部に固定 */
@@ -190,3 +194,4 @@ header h1 {
     color: #b9aa87;
   }
 }
+
