@@ -608,8 +608,8 @@ function drawConstellation() {
   animate(0);
 
   document.getElementById("story").innerHTML =
-    `${constellation.name}：${constellation.story}
-    小話：<br>${constellation.mini}`;
+    `${constellation.name}：${constellation.story}<br>
+    小話：${constellation.mini}`;
 }
 
   document.querySelectorAll('.nav_list a').forEach(link => {
@@ -620,5 +620,6 @@ function drawConstellation() {
   </script>
 </body>
 </html>
+
 
 
