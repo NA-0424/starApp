@@ -7,7 +7,20 @@
 <title>自分の星を知る</title>
 </head>
 <body>
-  <h1>星座描画</h1>
+  <header>
+    <h1>星座描画</h1>
+      <div class="nav">
+        <input id="aikon" type="checkbox">
+        <label for="aikon" class="aikon_open"><span></span></label>
+        <div class="navigation">
+          <ul class="nav_list">
+            <li class="items"><a href="index.html">ホーム画面</a></li>
+            <li class="items"><a href="look.html">今日の星空</a></li>
+            <li class="items"><a href="wish.html">願い事</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
   <canvas id="capricorn"></canvas><br>
   <p id="story"></p>
   <select id="month" name="month">
@@ -586,7 +599,11 @@ function drawConstellation() {
     `${constellation.name}：${constellation.story}`;
 }
 
-
+  document.querySelectorAll('.nav_list a').forEach(link => {
+        link.addEventListener('click', () => {
+        document.getElementById('aikon').checked = false;
+            });
+        });
   </script>
 </body>
 </html>
