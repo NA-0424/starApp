@@ -9,7 +9,20 @@
 <body>
   <canvas id="stars"></canvas>
   <div class="content">
-    <h1>星空アプリ</h1>
+    <header>
+      <div class="nav">
+        <input id="aikon" type="checkbox">
+        <label for="aikon" class="aikon_open"><span></span></label>
+        <div class="navigation">
+          <ul class="nav_list">
+            <li class="items"><a href="look.html">今日の星空</a></li>
+            <li class="items"><a href="eria.html">星座</a></li>
+            <li class="items"><a href="#animals">願い事</a></li>
+          </ul>
+        </div>
+      </div>
+      <h1>星空アプリ</h1>
+    </header>
     <div class="buttons">
       <button onclick = "location.href='look.html'">今日の空を見上げる</button>
       <button onclick = "location.href='search.html'">自分の星を知る</button>
@@ -45,6 +58,11 @@
 
     window.addEventListener("resize", resize);
     resize();
+    document.querySelectorAll('.nav_list a').forEach(link => {
+        link.addEventListener('click', () => {
+        document.getElementById('aikon').checked = false;
+            });
+        });
   </script>
 </body>
 </html>
